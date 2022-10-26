@@ -2,6 +2,7 @@
 import datetime
 import json
 import requests
+import random
 #sjw
 def renzheng(name,password):
     url = "http://dcmx.tjdz.net/auth/oauth/token?randomStr=undefined&grant_type=password&scope=server"
@@ -46,7 +47,7 @@ def getmessage(name,password):
 def submit(name,password):
     data=getmessage(name,password)
     url = "http://dcmx.tjdz.net/admin/studentTemperature/submit"
-
+    temp=random.uniform(36.0,37.0)
     payload2=[{"location": "天津市天津市津南区雅深路4号",
         "userid": str(data['userid']),
         "status": 0,
@@ -63,7 +64,7 @@ def submit(name,password):
         "operatorId": None,
         "id": None,
         "studentId": data['studentid'],
-        "num": "36",
+        "num": str(temp),
         "longitude": 117.3768375651042,
         "healthCode": "",
         "studentSexName": None,
